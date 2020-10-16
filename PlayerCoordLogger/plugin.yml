@@ -1,0 +1,5 @@
+name: PlayerCoordLogger
+version: 1.0
+author: RootZup
+description: Player Coordinate Logger
+main: playercoordlogger.Main
