@@ -12,6 +12,7 @@ public class Main extends JavaPlugin {
 	private static final int config_version = 1;
 	private FileConfiguration config = this.getConfig();
 	private int LoggingInterval;
+	private Threads t;
 	
 	
 	@Override
@@ -19,7 +20,7 @@ public class Main extends JavaPlugin {
 		setConfig();
 
 		LoggingInterval = config.getInt("Logging Interval(second)");
-		
+		t = new Threads(LoggingInterval);
 		
 		Bukkit.getConsoleSender().sendMessage(ChatColor.BLUE + Plugin_Name + " 가 활성화 되었습니다.");
 	}

@@ -1,11 +1,19 @@
 package playercoordlogger;
 
-public class Logic {
-	// Was it need?
+class TimeSchedule {
+	
+	private boolean isActive = false;
+	private int Interval;
+	
+	public TimeSchedule(int interval) {
+		this.Interval = interval;
+		
+		
+	}
 	
 	
 	
 	
 	
-
+	
 }

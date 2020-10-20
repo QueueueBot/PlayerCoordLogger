@@ -4,13 +4,14 @@ public class Threads extends Thread {
 	// Time Scheduling, Generate Logging Events
 	
 	private static boolean Switch = false;
+	private int interval;
 	
 	
-	public Threads() {
+	public Threads(int interval) {
 		// Constructor
-
+		this.interval = interval;
 		
-		Switch = false;
+		Switch = true;
 	}
 	
 	
