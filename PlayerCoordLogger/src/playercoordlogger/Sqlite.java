@@ -1,23 +1,26 @@
 package playercoordlogger;
 
-public class Sqlite {
-	// Connector for Sqlite3 JDBC
-	
-	private boolean status = false;
-	
-	public Sqlite() {
-		SQLiteInit();
-		
+public class Sqlite extends ABS_Logger {
+
+	@Override
+	boolean Init() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void doLog() {
+		// TODO Auto-generated method stub
 		
 	}
-	
-	private void SQLiteInit() {
-		status = true;
-		
+
+	@Override
+	public void getLog(String s) {
+		// TODO Auto-generated method stub
 		
 	}
-	
-	
+
+
 	
 	
 	
