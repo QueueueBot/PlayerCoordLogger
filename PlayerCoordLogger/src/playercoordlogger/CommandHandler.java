@@ -16,31 +16,51 @@ public class CommandHandler implements CommandExecutor {
 	// String commandLabel - the command alias that was used
 	// String[] args - an array of additional arguments, e.g. typing /hello abc def would put abc in args[0], and def in args[1]
 	@Override
-	public boolean onCommand(CommandSender sender, Command arg1, String arg2, String[] arg3) {
-		System.out.println("asdfasdf");
-		Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "sender : " + sender.getName());
-		Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "arg1 : " + arg1.getName());
-		Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "arg2 : " + arg2);
-		for(String s : arg3) {
-			Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "s : " + s);
+	public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args) {
+		
+		
+		if(args.length == 0) {
+			
+			
+			
 		}
-		if (sender instanceof Player) {
-            Player player = (Player) sender;
-            // Create a new ItemStack (type: diamond)
-            ItemStack diamond = new ItemStack(Material.DIAMOND);
-
-            // Create a new ItemStack (type: brick)
-            ItemStack bricks = new ItemStack(Material.BRICK);
-
-            // Set the amount of the ItemStack
-            bricks.setAmount(20);
-
-            // Give the player our items (comma-seperated list of all ItemStack)
-            player.getInventory().addItem(bricks, diamond);
+		
+		if(args.length == 1) {
+			if(args[0].equals("now")) {
+				now(sender);
+			}
+			
 		}
+		
+		
+		
 		
 		return true;
 	}
+	
+	private void now(CommandSender s) {
+		
+		if (s instanceof Player) {
+            Player p = (Player) s;
+            OBJ_Record r = new OBJ_Record(p, null);
+            p.sendMessage("x : " + r.getX());
+            p.sendMessage("y : " + r.getY());
+            p.sendMessage("z : " + r.getZ());
+            p.sendMessage("pit : " + r.getPitch());
+            p.sendMessage("yaw : " + r.getYaw());
+            p.sendMessage("dim : " + r.getDim());
+            p.sendMessage("uuid : " + r.getUUID());
+            p.sendMessage("t : " + r.getTimestamp());
+
+		}
+		else {
+			Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "Client only command");
+			
+		}
+	}
+	
+	
+	
 	
 	
 }
