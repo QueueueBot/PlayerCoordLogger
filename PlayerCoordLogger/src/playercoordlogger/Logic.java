@@ -1,5 +1,7 @@
 package playercoordlogger;
 
+
+
 class TimeSchedule {
 	
 	private boolean isActive = false;
@@ -8,12 +10,9 @@ class TimeSchedule {
 	public TimeSchedule(int interval) {
 		this.Interval = interval;
 		
-		
 	}
 	
 	
 	
-	
-	
-	
 }
+

@@ -1,17 +1,14 @@
 package playercoordlogger;
 
+import java.util.ArrayList;
+
 public class Sqlite extends ABS_Logger {
 
+	
 	@Override
 	boolean Init() {
 		// TODO Auto-generated method stub
 		return false;
-	}
-
-	@Override
-	public void doLog() {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
@@ -20,10 +17,16 @@ public class Sqlite extends ABS_Logger {
 		
 	}
 
+	@Override
+	public void writeLog(OBJ_Record r) {
+		// TODO Auto-generated method stub
+		
+	}
 
-	
-	
-	
-	
+	@Override
+	public void writeLog(ArrayList<OBJ_Record> list) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }

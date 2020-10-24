@@ -1,5 +1,16 @@
 name: PlayerCoordLogger
 version: 1.0
-author: RootZup
+author: QyuBot
 description: Player Coordinate Logger
 main: playercoordlogger.Main
+commands:
+   pcl:
+      description: temp
+      usage: /pcl
+      aliases: pclogger
+      permission: PlayerCoordLogger.basic
+      permission-message: You not have permission to do that.
+      
+permission:
+   PlayerCoordLogger.basic:
+      description: basic permission
