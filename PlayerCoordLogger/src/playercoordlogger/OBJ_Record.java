@@ -46,15 +46,15 @@ class OBJ_Record {
 		return this.uuid.toString();
 	}
 	
-	public double getX() {
+	public int getX() {
 		return this.PosX;
 	}
 	
-	public double getY() {
+	public int getY() {
 		return this.PosY;
 	}
 	
-	public double getZ() {
+	public int getZ() {
 		return this.PosZ;
 	}
 	
