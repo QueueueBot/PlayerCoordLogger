@@ -10,7 +10,6 @@ commands:
       aliases: pclogger
       permission: PlayerCoordLogger.basic
       permission-message: You not have permission to do that.
-      
 permission:
    PlayerCoordLogger.basic:
       description: basic permission
