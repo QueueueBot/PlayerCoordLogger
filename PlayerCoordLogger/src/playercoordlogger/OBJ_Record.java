@@ -11,13 +11,13 @@ class OBJ_Record {
 	
 	
 	private UUID uuid;
-	private int x;
-	private int y;
-	private int z;
+	private int PosX;
+	private int PosY;
+	private int PosZ;
 	// Vertical Angle of Head Direction
-	private int pit;
+	private double Pitch;
 	// Horizontal Angle of Head Direction
-	private int yaw;
+	private double Yaw;
 	private String dim;
 	private Timestamp ts;
 	
@@ -26,11 +26,11 @@ class OBJ_Record {
 		
 		this.uuid = p.getUniqueId();
 		Location L = p.getLocation();
-		this.x = L.getBlockX();
-		this.y = L.getBlockY();
-		this.z = L.getBlockZ();
-		this.pit = (int) L.getPitch();
-		this.yaw = (int) L.getYaw();
+		this.PosX = L.getBlockX();
+		this.PosY = L.getBlockY();
+		this.PosZ = L.getBlockZ();
+		this.Pitch = L.getPitch();
+		this.Yaw = L.getYaw();
 		this.dim = L.getWorld().getName();
 		
 		
@@ -46,24 +46,24 @@ class OBJ_Record {
 		return this.uuid.toString();
 	}
 	
-	public int getX() {
-		return this.x;
+	public double getX() {
+		return this.PosX;
 	}
 	
-	public int getY() {
-		return this.y;
+	public double getY() {
+		return this.PosY;
 	}
 	
-	public int getZ() {
-		return this.z;
+	public double getZ() {
+		return this.PosZ;
 	}
 	
-	public int getPitch() {
-		return this.pit;
+	public double getPitch() {
+		return this.Pitch;
 	}
 	
-	public int getYaw() {
-		return this.yaw;
+	public double getYaw() {
+		return this.Yaw;
 	}
 	
 	public String getDim() {
