@@ -49,7 +49,6 @@ class OBJ_Record {
 	}
 	
 	public OBJ_Record(String uuid, int x, int y, int z, String dim, Timestamp ts, double pitch, double yaw) {
-		
 		this.uuid = uuid;
 		this.PosX = x;
 		this.PosY = y;
@@ -58,8 +57,6 @@ class OBJ_Record {
 		this.ts = ts;
 		this.Pitch = pitch;
 		this.Yaw = yaw;
-		
-		
 	}
 	
 	
