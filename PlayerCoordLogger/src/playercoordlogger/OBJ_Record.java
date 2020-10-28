@@ -51,9 +51,9 @@ class OBJ_Record {
 				);
 	}
 	
-	public OBJ_Record(String uuid, String nickname, int x, int y, int z, String dim, Timestamp ts, double pitch, double yaw) {
+	public OBJ_Record(String uuid, String Nickname, int x, int y, int z, String dim, Timestamp ts, double pitch, double yaw) {
 		this.uuid = uuid;
-		this.Nickname = nickname;
+		this.Nickname = Nickname;
 		this.PosX = x;
 		this.PosY = y;
 		this.PosZ = z;
