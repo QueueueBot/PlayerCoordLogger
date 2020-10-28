@@ -2,7 +2,7 @@ package playercoordlogger;
 
 import java.util.ArrayList;
 
-public class Sqlite extends ABS_Logger {
+public class SQLite extends ABS_Logger {
 
 	
 	@Override
