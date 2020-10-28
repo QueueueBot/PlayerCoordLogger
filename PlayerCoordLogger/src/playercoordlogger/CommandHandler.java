@@ -46,6 +46,7 @@ public class CommandHandler implements CommandExecutor {
             Player p = (Player) s;
             OBJ_Record r = new OBJ_Record(p, null);
             p.sendMessage("uuid : " + r.getUUID());
+            p.sendMessage("Name : " + r.getNickname());
             p.sendMessage("x : " + r.getX());
             p.sendMessage("y : " + r.getY());
             p.sendMessage("z : " + r.getZ());
@@ -67,6 +68,7 @@ public class CommandHandler implements CommandExecutor {
             Player p = (Player) s;
             OBJ_Record r = new OBJ_Record();
             p.sendMessage("uuid : " + r.getUUID());
+            p.sendMessage("Name : " + r.getNickname());
             p.sendMessage("x : " + r.getX());
             p.sendMessage("y : " + r.getY());
             p.sendMessage("z : " + r.getZ());

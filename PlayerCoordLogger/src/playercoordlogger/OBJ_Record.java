@@ -11,6 +11,7 @@ class OBJ_Record {
 	
 	
 	private String uuid;
+	private String Nickname;
 	private int PosX;
 	private int PosY;
 	private int PosZ;
@@ -25,6 +26,7 @@ class OBJ_Record {
 	public OBJ_Record(Player p, Timestamp ts) {
 		this(
 				p.getUniqueId().toString()
+				, p.getName().toString()
 				, p.getLocation().getBlockX()
 				, p.getLocation().getBlockY()
 				, p.getLocation().getBlockZ()
@@ -38,6 +40,7 @@ class OBJ_Record {
 	public OBJ_Record() {
 		this(
 				new UUID(123123, 1234123).toString()
+				, "TesterName"
 				, (int) (Math.random()*100)
 				, (int) (Math.random()*256)
 				, (int) (Math.random()*100)
@@ -48,8 +51,9 @@ class OBJ_Record {
 				);
 	}
 	
-	public OBJ_Record(String uuid, int x, int y, int z, String dim, Timestamp ts, double pitch, double yaw) {
+	public OBJ_Record(String uuid, String nickname, int x, int y, int z, String dim, Timestamp ts, double pitch, double yaw) {
 		this.uuid = uuid;
+		this.Nickname = nickname;
 		this.PosX = x;
 		this.PosY = y;
 		this.PosZ = z;
@@ -63,6 +67,10 @@ class OBJ_Record {
 	
 	public String getUUID() {
 		return this.uuid.toString();
+	}
+	
+	public String getNickname() {
+		return this.Nickname;
 	}
 	
 	public int getX() {
