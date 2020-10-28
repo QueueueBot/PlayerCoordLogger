@@ -1,6 +1,5 @@
 package playercoordlogger;
 
-
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -13,8 +12,7 @@ public class Main extends JavaPlugin {
 	private FileConfiguration config = this.getConfig();
 	
 	private int LoggingInterval;
-	
-	private Threads t;
+	private boolean isDebug;
 	
 	
 	@Override
@@ -22,7 +20,8 @@ public class Main extends JavaPlugin {
 		setConfig();
 
 		LoggingInterval = config.getInt("Logging Interval(second)");
-		t = new Threads(LoggingInterval);
+		isDebug = config.getBoolean("Debug mode");
+		
 		
 		getCommand("pcl").setExecutor(new CommandHandler());
 		Bukkit.getConsoleSender().sendMessage(ChatColor.BLUE + Plugin_Name + " 가 활성화 되었습니다.");
@@ -37,12 +36,11 @@ public class Main extends JavaPlugin {
 	private void setConfig() {
 		config.addDefault("Config Version", config_version);
 		config.addDefault("Logging Interval(second)", 30);
-		config.addDefault("Log when Dead", true);
-		
-		config.addDefault("Log when Join", true);
-		config.addDefault("Log when Quit", true);
+		config.addDefault("Debug mode", false);
 		config.options().copyDefaults(true);
 		this.saveConfig();
 	}
+	
+
 	
 }
