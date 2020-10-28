@@ -17,11 +17,11 @@ abstract class ABS_Logger {
 	
 	abstract boolean Init();
 	
-	public abstract void writeLog(OBJ_Record r);
+	public abstract int writeLog(OBJ_Record r);
 	
-	public abstract void writeLog(ArrayList<OBJ_Record> list);
+	public abstract int writeLog(ArrayList<OBJ_Record> list);
 	
-	public abstract void getLog(String s);
+	public abstract int getLog(String s);
 	
 	
 	
