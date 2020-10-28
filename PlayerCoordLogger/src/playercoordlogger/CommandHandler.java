@@ -29,7 +29,9 @@ public class CommandHandler implements CommandExecutor {
 			if(args[0].equals("now")) {
 				now(sender);
 			}
-			
+			if(args[0].equals("rd")) {
+				random(sender);
+			}
 		}
 		
 		
@@ -43,14 +45,14 @@ public class CommandHandler implements CommandExecutor {
 		if (s instanceof Player) {
             Player p = (Player) s;
             OBJ_Record r = new OBJ_Record(p, null);
+            p.sendMessage("uuid : " + r.getUUID());
             p.sendMessage("x : " + r.getX());
             p.sendMessage("y : " + r.getY());
             p.sendMessage("z : " + r.getZ());
+            p.sendMessage("dim : " + r.getDim());
+            p.sendMessage("t : " + r.getTimestamp());
             p.sendMessage("pit : " + r.getPitch());
             p.sendMessage("yaw : " + r.getYaw());
-            p.sendMessage("dim : " + r.getDim());
-            p.sendMessage("uuid : " + r.getUUID());
-            p.sendMessage("t : " + r.getTimestamp());
 
 		}
 		else {
@@ -58,6 +60,29 @@ public class CommandHandler implements CommandExecutor {
 			
 		}
 	}
+	
+		private void random(CommandSender s) {
+		
+		if (s instanceof Player) {
+            Player p = (Player) s;
+            OBJ_Record r = new OBJ_Record();
+            p.sendMessage("uuid : " + r.getUUID());
+            p.sendMessage("x : " + r.getX());
+            p.sendMessage("y : " + r.getY());
+            p.sendMessage("z : " + r.getZ());
+            p.sendMessage("dim : " + r.getDim());
+            p.sendMessage("t : " + r.getTimestamp());
+            p.sendMessage("pit : " + r.getPitch());
+            p.sendMessage("yaw : " + r.getYaw());
+
+		}
+		else {
+			Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "Client only command");
+			
+		}
+	}
+	
+	
 	
 	
 	
