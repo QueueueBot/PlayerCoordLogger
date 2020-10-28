@@ -17,7 +17,6 @@ abstract class ABS_Logger {
 	
 	abstract boolean Init();
 	
-	
 	public abstract void writeLog(OBJ_Record r);
 	
 	public abstract void writeLog(ArrayList<OBJ_Record> list);
