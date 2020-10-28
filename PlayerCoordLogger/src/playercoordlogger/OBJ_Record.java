@@ -10,37 +10,59 @@ import java.util.UUID;
 class OBJ_Record {
 	
 	
-	private UUID uuid;
+	private String uuid;
 	private int PosX;
 	private int PosY;
 	private int PosZ;
+	private String dim;
+	private Timestamp ts;
 	// Vertical Angle of Head Direction
 	private double Pitch;
 	// Horizontal Angle of Head Direction
 	private double Yaw;
-	private String dim;
-	private Timestamp ts;
 	
 	
 	public OBJ_Record(Player p, Timestamp ts) {
-		
-		this.uuid = p.getUniqueId();
-		Location L = p.getLocation();
-		this.PosX = L.getBlockX();
-		this.PosY = L.getBlockY();
-		this.PosZ = L.getBlockZ();
-		this.Pitch = L.getPitch();
-		this.Yaw = L.getYaw();
-		this.dim = L.getWorld().getName();
-		
-		
-		if(ts == null) {
-			this.ts = new Timestamp(new GregorianCalendar().getTimeInMillis());
-		}
-		else {
-			this.ts = ts;
-		}
+		this(
+				p.getUniqueId().toString()
+				, p.getLocation().getBlockX()
+				, p.getLocation().getBlockY()
+				, p.getLocation().getBlockZ()
+				, p.getLocation().getWorld().getName()
+				, getGeoTimestamp()
+				, (double)p.getLocation().getPitch()
+				, (double)p.getLocation().getYaw()
+				);
 	}
+	
+	public OBJ_Record() {
+		this(
+				new UUID(123123, 1234123).toString()
+				, (int) (Math.random()*100)
+				, (int) (Math.random()*256)
+				, (int) (Math.random()*100)
+				, "test_world"
+				, getGeoTimestamp()
+				, (Math.random()*365)
+				, (Math.random()*365)
+				);
+	}
+	
+	public OBJ_Record(String uuid, int x, int y, int z, String dim, Timestamp ts, double pitch, double yaw) {
+		
+		this.uuid = uuid;
+		this.PosX = x;
+		this.PosY = y;
+		this.PosZ = z;
+		this.dim = dim;
+		this.ts = ts;
+		this.Pitch = pitch;
+		this.Yaw = yaw;
+		
+		
+	}
+	
+	
 	
 	public String getUUID() {
 		return this.uuid.toString();
@@ -74,6 +96,9 @@ class OBJ_Record {
 		return this.ts;
 	}
 	
+	public static Timestamp getGeoTimestamp() {
+		return new Timestamp(new GregorianCalendar().getTimeInMillis());
+	}
 	
 	
 	
