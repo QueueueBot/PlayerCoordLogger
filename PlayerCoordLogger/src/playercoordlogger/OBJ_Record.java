@@ -23,6 +23,12 @@ class OBJ_Record {
 	private double Yaw;
 	
 	
+	// The Timestamp will set as current time
+	public OBJ_Record(Player p) {
+		this(p, getGeoTimestamp());
+	};
+	
+	// For set Timestamp by manually
 	public OBJ_Record(Player p, Timestamp ts) {
 		this(
 				p.getUniqueId().toString()
@@ -37,6 +43,7 @@ class OBJ_Record {
 				);
 	}
 	
+	// Random Object Generator
 	public OBJ_Record() {
 		this(
 				new UUID(123123, 1234123).toString()
