@@ -7,13 +7,18 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class Main extends JavaPlugin {
 	
+	// TODO [R : Reservation, C : Complete]
+	// [R] Change cmd aliases "pcl" to "cl"
+	// [R] Add Time Schedule to write logging
+	// [R] Add shorted lookup cmd(latest 3d, around 10 blocks)
+	// [R] Add detailed lookup cmd(by uuid, nickname, limit time, block range)
+	
 	private static final String Plugin_Name = "Player Coord Logger";
 	private static final int config_version = 1;
 	private FileConfiguration config = this.getConfig();
 	
 	private int LoggingInterval;
 	private boolean isDebug;
-	
 	
 	@Override
 	public void onEnable(){
@@ -23,7 +28,7 @@ public class Main extends JavaPlugin {
 		isDebug = config.getBoolean("Debug mode");
 		
 		
-		getCommand("pcl").setExecutor(new CommandHandler());
+		getCommand("cl").setExecutor(new CommandHandler());
 		Bukkit.getConsoleSender().sendMessage(ChatColor.BLUE + Plugin_Name + " 가 활성화 되었습니다.");
 	}
 	
