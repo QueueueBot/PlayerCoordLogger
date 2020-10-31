@@ -12,10 +12,10 @@ import org.bukkit.inventory.ItemStack;
 public class CommandHandler implements CommandExecutor {
 
 	// CommandSender sender - who sent the command
-	// Command cmd - the command that was executed
-	// String commandLabel - the command alias that was used
-	// String[] args - an array of additional arguments, e.g. typing /hello abc def
-	// would put abc in args[0], and def in args[1]
+	// Command cmd 			- the command that was executed
+	// String commandLabel 	- the command alias that was used
+	// String[] args 		- an array of additional arguments
+	// e.g. typing /hello abc def would put abc in args[0], and def in args[1]
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args) {
 

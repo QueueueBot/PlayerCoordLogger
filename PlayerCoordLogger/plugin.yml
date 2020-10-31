@@ -4,9 +4,9 @@ author: QyuBot
 description: Player Coordinate Logger
 main: playercoordlogger.Main
 commands:
-   pcl:
+   cl:
       description: temp
-      usage: /pcl
+      usage: /cl
       aliases: pclogger
       permission: PlayerCoordLogger.basic
       permission-message: You not have permission to do that.
