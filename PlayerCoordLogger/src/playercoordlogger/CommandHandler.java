@@ -45,6 +45,11 @@ public class CommandHandler implements CommandExecutor {
 				sender.sendMessage("Write Log Immediately");
 				LoggingScheduler.doLogging();
 			}
+			if (args[0].equals("report")) {
+				for(String s : SQLite.getReport()) {
+					sender.sendMessage(s);
+				}
+			}
 		}
 		else {
 			sender.sendMessage("Unknown Command, type \"/"+ cmd +"\" or \"/" + cmd + " ?\" to showing help.");

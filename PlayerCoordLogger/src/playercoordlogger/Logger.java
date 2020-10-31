@@ -6,11 +6,14 @@ import org.bukkit.entity.Player;
 
 class Logger {
 	
-	
 	private static boolean isOpened = false;
 	
 	public static boolean getStatus() {
 		return false;
+	}
+	
+	public static String[] getReport() {
+		return null;
 	}
 	
 	public static boolean Init() {

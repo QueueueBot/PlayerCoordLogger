@@ -18,18 +18,9 @@ class LoggingScheduler extends TimerTask{
 
 	@Override
 	public void run() {
-		if(this.loggingEnabled) {
+		if(loggingEnabled) {
 			
-			if(isDebug) {
-				Bukkit.getConsoleSender().sendMessage("[Debug] Start logging");
-			}
-			int res = doLogging();
-			if(isDebug) {
-				Bukkit.getConsoleSender().sendMessage("[Debug] Logging res : " + res);
-			}
-			else if(res != 0) {
-				Bukkit.getConsoleSender().sendMessage("Logging res : " + res);
-			}
+			doLogging();
 		}
 	}
 	
@@ -41,11 +32,22 @@ class LoggingScheduler extends TimerTask{
 		loggingEnabled = false;
 	}
 	
-	public static int doLogging() {
+	public static void doLogging() {
+		
+		if(isDebug) {
+			Bukkit.getConsoleSender().sendMessage("[Debug] Start logging");
+		}
 		@SuppressWarnings("deprecation")
 		Player[] plist = Bukkit.getOnlinePlayers();
-		return SQLite.writeAll(plist);
+		int res = SQLite.writeAll(plist);
+		
+		if(isDebug) {
+			Bukkit.getConsoleSender().sendMessage("[Debug] Logging res : " + res);
+		}
+		else if(res != 0) {
+			Bukkit.getConsoleSender().sendMessage("Logging res : " + res);
+		}
+		
 	}
-	
 	
 }

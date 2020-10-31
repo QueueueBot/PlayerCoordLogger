@@ -11,14 +11,14 @@ public class Main extends JavaPlugin {
 	
 	// TODO [R : Reservation, C : Complete]
 	// [C] Change cmd aliases "pcl" to "cl"
-	// [R] Add Time Schedule to write logging
+	// [C] Add Time Schedule to write logging
 	// [R] Add shorted lookup cmd(latest 3d, around 10 blocks)
 	// [R] Add detailed lookup cmd(by uuid, nickname, limit time, block range)
 	
-	private static final String Plugin_Name = "Player Coord Logger";
-	private static final int config_version = 1;
+	public static final String Plugin_Name = "Player Coord Logger";
+	private static String Plugin_Directory = null;
+	public static final int config_version = 1;
 	private FileConfiguration config = this.getConfig();
-	public static Logger l;
 	
 	private int LoggingInterval;
 	private boolean isDebug;
@@ -32,14 +32,17 @@ public class Main extends JavaPlugin {
 
 		LoggingInterval = config.getInt("Logging Interval(second)");
 		isDebug = config.getBoolean("Debug mode");
-		
-		l = new SQLite();
+		Plugin_Directory = getDataFolder().getAbsolutePath();
+
 		getCommand("cl").setExecutor(new CommandHandler());
-		if(Logger.Init()) {
+		if(SQLite.Init()) {
 			Bukkit.getConsoleSender().sendMessage(ChatColor.BLUE + "Database Successfully Init.");
 		}
 		else {
-			Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "Database Init Failed!!");
+			Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "[ERROR] Database Init Failed!!");
+			for(String s : SQLite.getReport()) {
+				Bukkit.getConsoleSender().sendMessage(ChatColor.RED + s);
+			}
 		}
 		
 		timer = new Timer();
@@ -62,6 +65,9 @@ public class Main extends JavaPlugin {
 		this.saveConfig();
 	}
 	
+	public static String getPluginDir() {
+		return Plugin_Directory;
+	}
 
 	
 }

@@ -22,9 +22,10 @@ public class SQLite extends Logger {
 		}
 
 	}
-
-	private static String PluginDir;
-	private static String DatabaseDir;
+	
+	private static String PluginPath = "";
+	private static String PluginDir = "";
+	private static String DatabaseDir = "";
 	private static Connection conn;
 	private static boolean isOpened = false;
 	
@@ -49,9 +50,11 @@ public class SQLite extends Logger {
 	}
 	
 	public static boolean Init() {
-		PluginDir = Main.class.getProtectionDomain().getCodeSource().getLocation().getPath().replaceAll("%20", "");
-		DatabaseDir = PluginDir + FILENAME;
+		PluginDir = Main.getPluginDir();
+		DatabaseDir = PluginDir + "/" + FILENAME;
+		open();
 		createTable();
+		isOpened = true;
 		// TODO : Need Handler for Exception
 		return true;
 	}
@@ -59,6 +62,14 @@ public class SQLite extends Logger {
 	
 	public static int getLog(String s) {
 		return 0;
+	}
+	
+	public static String[] getReport() {
+		String[] s = new String[3];
+		s[0] = "isOpened : " + isOpened;
+		s[1] = "PluginDir : " + PluginDir;
+		s[2] = "DatabaseDir : " + DatabaseDir; 
+		return s;
 	}
 
 	
@@ -74,7 +85,7 @@ public class SQLite extends Logger {
 		
 		res = writeLog(list);
 		
-		return res;
+		return 0;
 	}
 	
 	public static int writeLog(OBJ_Record r) {
@@ -180,11 +191,11 @@ public class SQLite extends Logger {
 		return list;
 	}
 	
-	public void open() {
+	public static void open() {
 		try {
 			SQLiteConfig cfg = new SQLiteConfig();
 			cfg.setReadOnly(false);
-			this.conn = DriverManager.getConnection("jdbc:sqlite:/" + DatabaseDir);
+			conn = DriverManager.getConnection("jdbc:sqlite:/" + DatabaseDir);
 			
 		} catch(SQLException e) {
 			e.printStackTrace();
