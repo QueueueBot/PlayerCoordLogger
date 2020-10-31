@@ -19,12 +19,11 @@ public class CommandHandler implements CommandExecutor {
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args) {
 
-		if (args.length == 0) {
-
+		if(args.length == 0) {
+			sender.sendMessage("\"" + cmd + "\"");
 		}
-
 		if (args.length == 1) {
-			if (args[0].equals("now")) {
+			if (args[0].equals("me")) {
 				now(sender);
 			}
 			if (args[0].equals("rd")) {
@@ -34,6 +33,22 @@ public class CommandHandler implements CommandExecutor {
 				// TODO
 				// Shorted look-up cmd
 			}
+			if (args[0].equals("on")) {
+				LoggingScheduler.toEnable();
+				sender.sendMessage("Start Logging");
+			}
+			if (args[0].equals("off")) {
+				LoggingScheduler.toDisable();
+				sender.sendMessage("Stop Logging");
+			}
+			if (args[0].equals("wnow")) {
+				sender.sendMessage("Write Log Immediately");
+				LoggingScheduler.doLogging();
+			}
+		}
+		else {
+			sender.sendMessage("Unknown Command, type \"/"+ cmd +"\" or \"/" + cmd + " ?\" to showing help.");
+			
 		}
 
 		return true;

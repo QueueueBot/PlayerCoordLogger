@@ -8,9 +8,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import org.bukkit.entity.Player;
 import org.sqlite.SQLiteConfig;
 
-public class SQLite implements Logger {
+public class SQLite extends Logger {
 	
 	static {
 
@@ -32,23 +33,26 @@ public class SQLite implements Logger {
 	private static final String CREATE_SQL = "CREATE TABLE IF NOT EXISTS " + TABLENAME +
 			" (" + 
 			"    `UUID`       VARCHAR(64)    NOT NULL,\n" + 
-			"    `Nickname`       VARCHAR(64)    NOT NULL,\n" + 
+			"    `Nickname`       VARCHAR(32)    NOT NULL,\n" + 
 			"    `PosX`       INT            NOT NULL,\n" + 
 			"    `PosY`       INT            NOT NULL,\n" + 
 			"    `PosZ`       INT            NOT NULL,\n" + 
-			"    `Dim`        VARCHAR(45)    NOT NULL,\n" + 
+			"    `Dim`        VARCHAR(64)    NOT NULL,\n" + 
 			"    `Timestamp`  TIMESTAMP      NOT NULL,\n" + 
 			"    `Pitch`      DOUBLE         NOT NULL,\n" + 
 			"    `Yaw`        DOUBLE         NOT NULL\n" + 
 			");";
 	private static final String INSERT_SQL = "INSERT INTO " + TABLENAME + "(UUID, Nickname, PosX, PosY, PosZ, Dim, Timestamp, Pitch, Yaw) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
 	
-	
+	public static boolean getStatus() {
+		return isOpened;
+	}
 	
 	public static boolean Init() {
 		PluginDir = Main.class.getProtectionDomain().getCodeSource().getLocation().getPath().replaceAll("%20", "");
 		DatabaseDir = PluginDir + FILENAME;
-		// Need Handler for Exception
+		createTable();
+		// TODO : Need Handler for Exception
 		return true;
 	}
 
@@ -57,6 +61,21 @@ public class SQLite implements Logger {
 		return 0;
 	}
 
+	
+	public static int writeAll(Player[] plist) {
+		int res = 0;
+		if(!isOpened) {
+			return -1;
+		}
+		ArrayList<OBJ_Record> list = new ArrayList<OBJ_Record>();
+		for(Player p : plist) {
+			list.add(new OBJ_Record(p));
+		}
+		
+		res = writeLog(list);
+		
+		return res;
+	}
 	
 	public static int writeLog(OBJ_Record r) {
 
@@ -82,25 +101,28 @@ public class SQLite implements Logger {
 			numRowsInserted = ps.executeUpdate();
 			
 		} catch (SQLException e) {
+			close(ps);
 			e.printStackTrace();
+			return -1;
 		} finally {
 			close(ps);
 		}
 		
-		return numRowsInserted;
+		return 0;
 		
 	}
 
 	
-	public int writeLog(ArrayList<OBJ_Record> list) {
+	public static int writeLog(ArrayList<OBJ_Record> list) {
+		int res = 0;
 		for(OBJ_Record r : list) {
-			writeLog(r);
+			res += writeLog(r);
 		}
 		// Need Handler for Exception
-		return 0;
+		return res;
 	}
 	
-	private int createTable() {
+	private static int createTable() {
 		if(!isOpened) {
 			return -1;
 		}
@@ -109,7 +131,7 @@ public class SQLite implements Logger {
 		PreparedStatement ps = null;
 		
 		try {
-			ps = this.conn.prepareStatement(CREATE_SQL);
+			ps = conn.prepareStatement(CREATE_SQL);
 			
 			numRowsInserted = ps.executeUpdate();
 			
@@ -197,10 +219,5 @@ public class SQLite implements Logger {
 		return true;
 	}
 
-
-	public boolean getStatus() {
-		// TODO Auto-generated method stub
-		return false;
-	}
 	
 }

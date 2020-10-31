@@ -1,5 +1,7 @@
 package playercoordlogger;
 
+import java.util.Timer;
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -16,9 +18,13 @@ public class Main extends JavaPlugin {
 	private static final String Plugin_Name = "Player Coord Logger";
 	private static final int config_version = 1;
 	private FileConfiguration config = this.getConfig();
+	public static Logger l;
 	
 	private int LoggingInterval;
 	private boolean isDebug;
+	
+	Timer timer;
+	LoggingScheduler ls;
 	
 	@Override
 	public void onEnable(){
@@ -27,14 +33,24 @@ public class Main extends JavaPlugin {
 		LoggingInterval = config.getInt("Logging Interval(second)");
 		isDebug = config.getBoolean("Debug mode");
 		
-		
+		l = new SQLite();
 		getCommand("cl").setExecutor(new CommandHandler());
-		Bukkit.getConsoleSender().sendMessage(ChatColor.BLUE + Plugin_Name + " 가 활성화 되었습니다.");
+		if(Logger.Init()) {
+			Bukkit.getConsoleSender().sendMessage(ChatColor.BLUE + "Database Successfully Init.");
+		}
+		else {
+			Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "Database Init Failed!!");
+		}
+		
+		timer = new Timer();
+		ls = new LoggingScheduler(isDebug);
+		
+		timer.scheduleAtFixedRate(ls, LoggingInterval * 1000, LoggingInterval * 1000);
 	}
 	
 	@Override
 	public void onDisable(){
-		Bukkit.getConsoleSender().sendMessage(ChatColor.BLUE + Plugin_Name + " 가 비활성화 되었습니다.");
+		timer.cancel();
 	}
 	
 	

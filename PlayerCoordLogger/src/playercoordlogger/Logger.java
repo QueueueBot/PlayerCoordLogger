@@ -2,6 +2,8 @@ package playercoordlogger;
 
 import java.util.ArrayList;
 
+import org.bukkit.entity.Player;
+
 class Logger {
 	
 	
@@ -16,6 +18,10 @@ class Logger {
 	}
 	
 	public static int writeLog(OBJ_Record r) {
+		return -1;
+	}
+	
+	public static int writeAll(Player[] plist) {
 		return -1;
 	}
 	
