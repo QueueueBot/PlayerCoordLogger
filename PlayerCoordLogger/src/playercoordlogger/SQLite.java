@@ -22,10 +22,10 @@ public class SQLite implements Logger {
 
 	}
 
-	private String PluginDir;
-	private String DatabaseDir;
-	private Connection conn;
-	private boolean isOpened = false;
+	private static String PluginDir;
+	private static String DatabaseDir;
+	private static Connection conn;
+	private static boolean isOpened = false;
 	
 	private static final String FILENAME = "database.db";
 	private static final String TABLENAME = "Record";
@@ -45,7 +45,7 @@ public class SQLite implements Logger {
 	
 	
 	
-	boolean Init() {
+	public static boolean Init() {
 		PluginDir = Main.class.getProtectionDomain().getCodeSource().getLocation().getPath().replaceAll("%20", "");
 		DatabaseDir = PluginDir + FILENAME;
 		// Need Handler for Exception
@@ -53,12 +53,12 @@ public class SQLite implements Logger {
 	}
 
 	
-	public int getLog(String s) {
+	public static int getLog(String s) {
 		return 0;
 	}
 
 	
-	public int writeLog(OBJ_Record r) {
+	public static int writeLog(OBJ_Record r) {
 
 		if(!isOpened) {
 			return -1;
@@ -68,7 +68,7 @@ public class SQLite implements Logger {
 		PreparedStatement ps = null;
 		
 		try {
-			ps = this.conn.prepareStatement(INSERT_SQL);
+			ps = conn.prepareStatement(INSERT_SQL);
 			ps.setString(1,  r.getUUID());
 			ps.setString(2,  r.getNickname());
 			ps.setInt(3, r.getX());
@@ -173,7 +173,7 @@ public class SQLite implements Logger {
 	
 	
 	
-	private void close(Statement statement) {
+	private static void close(Statement statement) {
         try {
             if (statement != null) {
                 statement.close();
@@ -183,13 +183,13 @@ public class SQLite implements Logger {
         }
     }
 	
-	private boolean close() {
+	private static boolean close() {
 		
-		if(this.isOpened == false) {
+		if(isOpened == false) {
 			return true;
 		}
 		try {
-			this.conn.close();
+			conn.close();
 		} catch(SQLException e) {
 			e.printStackTrace();
 			return false;
