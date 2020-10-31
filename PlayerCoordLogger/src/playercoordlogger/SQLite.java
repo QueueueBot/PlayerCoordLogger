@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 import org.sqlite.SQLiteConfig;
 
-public class SQLite extends ABS_Logger {
+public class SQLite implements Logger {
 	
 	static {
 
@@ -45,7 +45,6 @@ public class SQLite extends ABS_Logger {
 	
 	
 	
-	@Override
 	boolean Init() {
 		PluginDir = Main.class.getProtectionDomain().getCodeSource().getLocation().getPath().replaceAll("%20", "");
 		DatabaseDir = PluginDir + FILENAME;
@@ -54,13 +53,11 @@ public class SQLite extends ABS_Logger {
 	}
 
 	
-	@Override
 	public int getLog(String s) {
 		return 0;
 	}
 
 	
-	@Override
 	public int writeLog(OBJ_Record r) {
 
 		if(!isOpened) {
@@ -95,7 +92,6 @@ public class SQLite extends ABS_Logger {
 	}
 
 	
-	@Override
 	public int writeLog(ArrayList<OBJ_Record> list) {
 		for(OBJ_Record r : list) {
 			writeLog(r);
@@ -199,6 +195,12 @@ public class SQLite extends ABS_Logger {
 			return false;
 		}
 		return true;
+	}
+
+
+	public boolean getStatus() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 	
 }
