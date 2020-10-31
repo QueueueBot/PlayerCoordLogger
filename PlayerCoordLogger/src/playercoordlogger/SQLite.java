@@ -107,7 +107,7 @@ public class SQLite extends Logger {
 			ps.setString(6, r.getDim());
 			ps.setTimestamp(7, r.getTimestamp());
 			ps.setDouble(8, r.getPitch());
-			ps.setDouble(9, r.getPitch());
+			ps.setDouble(9, r.getYaw());
 			
 			numRowsInserted = ps.executeUpdate();
 			
