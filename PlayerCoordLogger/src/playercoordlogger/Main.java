@@ -8,7 +8,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class Main extends JavaPlugin {
 	
 	// TODO [R : Reservation, C : Complete]
-	// [R] Change cmd aliases "pcl" to "cl"
+	// [C] Change cmd aliases "pcl" to "cl"
 	// [R] Add Time Schedule to write logging
 	// [R] Add shorted lookup cmd(latest 3d, around 10 blocks)
 	// [R] Add detailed lookup cmd(by uuid, nickname, limit time, block range)
