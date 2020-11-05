@@ -52,18 +52,16 @@ public class SQLite extends Logger {
 	public static boolean Init() {
 		PluginDir = Main.getPluginDir();
 		DatabaseDir = PluginDir + "/" + FILENAME;
+		// Open Databse Connection
 		open();
+		// Create Table if not exist
 		createTable();
 		isOpened = true;
 		// TODO : Need Handler for Exception
 		return true;
 	}
-
 	
-	public static int getLog(String s) {
-		return 0;
-	}
-	
+	// Return Database connection info as String array
 	public static String[] getReport() {
 		String[] s = new String[3];
 		s[0] = "isOpened : " + isOpened;
@@ -79,15 +77,25 @@ public class SQLite extends Logger {
 			return -1;
 		}
 		ArrayList<OBJ_Record> list = new ArrayList<OBJ_Record>();
+		// Convert Player to OBJ_Record
 		for(Player p : plist) {
 			list.add(new OBJ_Record(p));
 		}
-		
 		res = writeLog(list);
-		
-		return 0;
+		return res;
 	}
 	
+	// Record from ArrayList
+	public static int writeLog(ArrayList<OBJ_Record> list) {
+		int res = 0;
+		for(OBJ_Record r : list) {
+			res += writeLog(r);
+		}
+		// Need Handler for Exception
+		return res;
+	}
+	
+	// Record Coord Data in Database
 	public static int writeLog(OBJ_Record r) {
 
 		if(!isOpened) {
@@ -122,17 +130,8 @@ public class SQLite extends Logger {
 		return 0;
 		
 	}
-
 	
-	public static int writeLog(ArrayList<OBJ_Record> list) {
-		int res = 0;
-		for(OBJ_Record r : list) {
-			res += writeLog(r);
-		}
-		// Need Handler for Exception
-		return res;
-	}
-	
+	// Create Table
 	private static int createTable() {
 		if(!isOpened) {
 			return -1;
@@ -154,7 +153,6 @@ public class SQLite extends Logger {
 		
 		return 1;
 	}
-	
 	
 	private ArrayList<OBJ_Record> SelectAll() {
 		if(!isOpened) {

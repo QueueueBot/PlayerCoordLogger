@@ -59,6 +59,7 @@ public class CommandHandler implements CommandExecutor {
 		return true;
 	}
 
+	// Print Players corrent coord data
 	private void now(CommandSender s) {
 
 		if (s instanceof Player) {
@@ -70,6 +71,7 @@ public class CommandHandler implements CommandExecutor {
 		}
 	}
 
+	// Print Random coord data
 	private void random(CommandSender s) {
 
 		if (s instanceof Player) {
@@ -81,6 +83,7 @@ public class CommandHandler implements CommandExecutor {
 		}
 	}
 
+	// Data Printer
 	private void SingleObjectPrinter(Player p, OBJ_Record r) {
 		p.sendMessage("uuid : " + r.getUUID());
 		p.sendMessage("Name : " + r.getNickname());

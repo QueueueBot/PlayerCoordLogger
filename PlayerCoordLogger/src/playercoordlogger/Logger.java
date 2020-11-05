@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.bukkit.entity.Player;
 
+// Not used
 class Logger {
 	
 	private static boolean isOpened = false;
