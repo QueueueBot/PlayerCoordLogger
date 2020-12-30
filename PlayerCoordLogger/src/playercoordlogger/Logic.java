@@ -12,14 +12,14 @@ class LoggingScheduler extends TimerTask{
 	private static boolean loggingEnabled = true;
 	private static boolean isDebug = false;
 	
-	public LoggingScheduler(boolean iD) {
-		isDebug = iD;
+	public LoggingScheduler(boolean isDebug) {
+		this.isDebug = isDebug;
 	}
 
 	@Override
 	public void run() {
+		// If loggingEnabled is true, Try to write Log 
 		if(loggingEnabled) {
-			
 			doLogging();
 		}
 	}

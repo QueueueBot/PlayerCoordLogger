@@ -23,28 +23,41 @@ public class CommandHandler implements CommandExecutor {
 			sender.sendMessage("\"" + cmd + "\"");
 		}
 		if (args.length == 1) {
+			
+			// Display Player's Status
 			if (args[0].equals("me")) {
 				now(sender);
 			}
+			
+			// Display Random Status
 			if (args[0].equals("rd")) {
 				random(sender);
 			}
+			
 			if (args[0].equals("o")) {
 				// TODO
 				// Shorted look-up cmd
 			}
+			
+			// Enable Logging
 			if (args[0].equals("on")) {
 				LoggingScheduler.setEnable();
 				sender.sendMessage("Start Logging");
 			}
+			
+			// Disable Logging
 			if (args[0].equals("off")) {
 				LoggingScheduler.setDisable();
 				sender.sendMessage("Stop Logging");
 			}
+			
+			// Write Log Immediately
 			if (args[0].equals("wnow")) {
 				sender.sendMessage("Write Log Immediately");
 				LoggingScheduler.doLogging();
 			}
+			
+			// Display SQLite Status
 			if (args[0].equals("report")) {
 				for(String s : SQLite.getReport()) {
 					sender.sendMessage(s);

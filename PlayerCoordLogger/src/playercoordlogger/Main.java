@@ -24,18 +24,24 @@ public class Main extends JavaPlugin {
 	private int LoggingInterval;
 	private boolean isDebug;
 	
-	Timer timer;
-	LoggingScheduler ls;
+	Timer Timer;
+	LoggingScheduler LoggingScheduler;
 	
 	@Override
 	public void onEnable(){
 		setConfig();
-
+		
+		// Get Config Data
 		LoggingInterval = config.getInt("Logging Interval(second)");
 		isDebug = config.getBoolean("Debug mode");
+		
+		// Get Plugin Folder
 		Plugin_Directory = getDataFolder().getAbsolutePath();
 
+		// Set Plugin Command Prefix
 		getCommand("cl").setExecutor(new CommandHandler());
+		
+		// Check is Database initialize Successfully
 		if(SQLite.Init()) {
 			Bukkit.getConsoleSender().sendMessage(ChatColor.BLUE + "Database Successfully Init.");
 		}
@@ -46,15 +52,15 @@ public class Main extends JavaPlugin {
 			}
 		}
 		
-		timer = new Timer();
-		ls = new LoggingScheduler(isDebug);
+		Timer = new Timer();
+		LoggingScheduler = new LoggingScheduler(isDebug);
 		
-		timer.scheduleAtFixedRate(ls, LoggingInterval * 1000, LoggingInterval * 1000);
+		Timer.scheduleAtFixedRate(LoggingScheduler, LoggingInterval * 1000, LoggingInterval * 1000);
 	}
 	
 	@Override
 	public void onDisable(){
-		timer.cancel();
+		Timer.cancel();
 	}
 	
 	
