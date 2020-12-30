@@ -34,11 +34,11 @@ public class CommandHandler implements CommandExecutor {
 				// Shorted look-up cmd
 			}
 			if (args[0].equals("on")) {
-				LoggingScheduler.toEnable();
+				LoggingScheduler.setEnable();
 				sender.sendMessage("Start Logging");
 			}
 			if (args[0].equals("off")) {
-				LoggingScheduler.toDisable();
+				LoggingScheduler.setDisable();
 				sender.sendMessage("Stop Logging");
 			}
 			if (args[0].equals("wnow")) {

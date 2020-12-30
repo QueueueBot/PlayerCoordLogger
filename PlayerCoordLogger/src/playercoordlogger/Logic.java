@@ -24,16 +24,17 @@ class LoggingScheduler extends TimerTask{
 		}
 	}
 	
-	public static void toEnable() {
+	public static void setEnable() {
 		loggingEnabled = true;
 	}
 	
-	public static void toDisable() {
+	public static void setDisable() {
 		loggingEnabled = false;
 	}
 	
+	
 	public static void doLogging() {
-		
+		// Print Log if Debug mode
 		if(isDebug) {
 			Bukkit.getConsoleSender().sendMessage("[Debug] Start logging");
 		}
